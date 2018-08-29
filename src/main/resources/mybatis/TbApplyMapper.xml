@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lzz.potato.dao.TbApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.lzz.potato.pojo.TbApply" >
+    <id column="a_id" property="aId" jdbcType="INTEGER" />
+    <result column="a_name" property="aName" jdbcType="VARCHAR" />
+    <result column="a_type" property="aType" jdbcType="VARCHAR" />
+    <result column="a_location" property="aLocation" jdbcType="VARCHAR" />
+    <result column="a_leader" property="aLeader" jdbcType="VARCHAR" />
+    <result column="a_money" property="aMoney" jdbcType="DOUBLE" />
+    <result column="a_content" property="aContent" jdbcType="VARCHAR" />
+    <result column="a_extra" property="aExtra" jdbcType="VARCHAR" />
+    <result column="a_file" property="aFile" jdbcType="VARCHAR" />
+    <result column="a_the_id" property="aTheId" jdbcType="INTEGER" />
+    <result column="a_first_opinion" property="aFirstOpinion" jdbcType="VARCHAR" />
+    <result column="a_leader_opinion" property="aLeaderOpinion" jdbcType="VARCHAR" />
+    <result column="a_flag" property="aFlag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    a_id, a_name, a_type, a_location, a_leader, a_money, a_content, a_extra, a_file, 
+    a_the_id, a_first_opinion, a_leader_opinion, a_flag
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lzz.potato.pojo.TbApplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_apply
+    where a_id = #{aId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_apply
+    where a_id = #{aId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lzz.potato.pojo.TbApplyExample" >
+    delete from tb_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lzz.potato.pojo.TbApply" >
+    insert into tb_apply (a_id, a_name, a_type, 
+      a_location, a_leader, a_money, 
+      a_content, a_extra, a_file, 
+      a_the_id, a_first_opinion, a_leader_opinion, 
+      a_flag)
+    values (#{aId,jdbcType=INTEGER}, #{aName,jdbcType=VARCHAR}, #{aType,jdbcType=VARCHAR}, 
+      #{aLocation,jdbcType=VARCHAR}, #{aLeader,jdbcType=VARCHAR}, #{aMoney,jdbcType=DOUBLE}, 
+      #{aContent,jdbcType=VARCHAR}, #{aExtra,jdbcType=VARCHAR}, #{aFile,jdbcType=VARCHAR}, 
+      #{aTheId,jdbcType=INTEGER}, #{aFirstOpinion,jdbcType=VARCHAR}, #{aLeaderOpinion,jdbcType=VARCHAR}, 
+      #{aFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lzz.potato.pojo.TbApply" >
+    insert into tb_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aId != null" >
+        a_id,
+      </if>
+      <if test="aName != null" >
+        a_name,
+      </if>
+      <if test="aType != null" >
+        a_type,
+      </if>
+      <if test="aLocation != null" >
+        a_location,
+      </if>
+      <if test="aLeader != null" >
+        a_leader,
+      </if>
+      <if test="aMoney != null" >
+        a_money,
+      </if>
+      <if test="aContent != null" >
+        a_content,
+      </if>
+      <if test="aExtra != null" >
+        a_extra,
+      </if>
+      <if test="aFile != null" >
+        a_file,
+      </if>
+      <if test="aTheId != null" >
+        a_the_id,
+      </if>
+      <if test="aFirstOpinion != null" >
+        a_first_opinion,
+      </if>
+      <if test="aLeaderOpinion != null" >
+        a_leader_opinion,
+      </if>
+      <if test="aFlag != null" >
+        a_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aId != null" >
+        #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="aName != null" >
+        #{aName,jdbcType=VARCHAR},
+      </if>
+      <if test="aType != null" >
+        #{aType,jdbcType=VARCHAR},
+      </if>
+      <if test="aLocation != null" >
+        #{aLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="aLeader != null" >
+        #{aLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="aMoney != null" >
+        #{aMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="aContent != null" >
+        #{aContent,jdbcType=VARCHAR},
+      </if>
+      <if test="aExtra != null" >
+        #{aExtra,jdbcType=VARCHAR},
+      </if>
+      <if test="aFile != null" >
+        #{aFile,jdbcType=VARCHAR},
+      </if>
+      <if test="aTheId != null" >
+        #{aTheId,jdbcType=INTEGER},
+      </if>
+      <if test="aFirstOpinion != null" >
+        #{aFirstOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="aLeaderOpinion != null" >
+        #{aLeaderOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="aFlag != null" >
+        #{aFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lzz.potato.pojo.TbApplyExample" resultType="java.lang.Integer" >
+    select count(*) from tb_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_apply
+    <set >
+      <if test="record.aId != null" >
+        a_id = #{record.aId,jdbcType=INTEGER},
+      </if>
+      <if test="record.aName != null" >
+        a_name = #{record.aName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aType != null" >
+        a_type = #{record.aType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aLocation != null" >
+        a_location = #{record.aLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aLeader != null" >
+        a_leader = #{record.aLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aMoney != null" >
+        a_money = #{record.aMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.aContent != null" >
+        a_content = #{record.aContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aExtra != null" >
+        a_extra = #{record.aExtra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aFile != null" >
+        a_file = #{record.aFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aTheId != null" >
+        a_the_id = #{record.aTheId,jdbcType=INTEGER},
+      </if>
+      <if test="record.aFirstOpinion != null" >
+        a_first_opinion = #{record.aFirstOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aLeaderOpinion != null" >
+        a_leader_opinion = #{record.aLeaderOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aFlag != null" >
+        a_flag = #{record.aFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_apply
+    set a_id = #{record.aId,jdbcType=INTEGER},
+      a_name = #{record.aName,jdbcType=VARCHAR},
+      a_type = #{record.aType,jdbcType=VARCHAR},
+      a_location = #{record.aLocation,jdbcType=VARCHAR},
+      a_leader = #{record.aLeader,jdbcType=VARCHAR},
+      a_money = #{record.aMoney,jdbcType=DOUBLE},
+      a_content = #{record.aContent,jdbcType=VARCHAR},
+      a_extra = #{record.aExtra,jdbcType=VARCHAR},
+      a_file = #{record.aFile,jdbcType=VARCHAR},
+      a_the_id = #{record.aTheId,jdbcType=INTEGER},
+      a_first_opinion = #{record.aFirstOpinion,jdbcType=VARCHAR},
+      a_leader_opinion = #{record.aLeaderOpinion,jdbcType=VARCHAR},
+      a_flag = #{record.aFlag,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lzz.potato.pojo.TbApply" >
+    update tb_apply
+    <set >
+      <if test="aName != null" >
+        a_name = #{aName,jdbcType=VARCHAR},
+      </if>
+      <if test="aType != null" >
+        a_type = #{aType,jdbcType=VARCHAR},
+      </if>
+      <if test="aLocation != null" >
+        a_location = #{aLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="aLeader != null" >
+        a_leader = #{aLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="aMoney != null" >
+        a_money = #{aMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="aContent != null" >
+        a_content = #{aContent,jdbcType=VARCHAR},
+      </if>
+      <if test="aExtra != null" >
+        a_extra = #{aExtra,jdbcType=VARCHAR},
+      </if>
+      <if test="aFile != null" >
+        a_file = #{aFile,jdbcType=VARCHAR},
+      </if>
+      <if test="aTheId != null" >
+        a_the_id = #{aTheId,jdbcType=INTEGER},
+      </if>
+      <if test="aFirstOpinion != null" >
+        a_first_opinion = #{aFirstOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="aLeaderOpinion != null" >
+        a_leader_opinion = #{aLeaderOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="aFlag != null" >
+        a_flag = #{aFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lzz.potato.pojo.TbApply" >
+    update tb_apply
+    set a_name = #{aName,jdbcType=VARCHAR},
+      a_type = #{aType,jdbcType=VARCHAR},
+      a_location = #{aLocation,jdbcType=VARCHAR},
+      a_leader = #{aLeader,jdbcType=VARCHAR},
+      a_money = #{aMoney,jdbcType=DOUBLE},
+      a_content = #{aContent,jdbcType=VARCHAR},
+      a_extra = #{aExtra,jdbcType=VARCHAR},
+      a_file = #{aFile,jdbcType=VARCHAR},
+      a_the_id = #{aTheId,jdbcType=INTEGER},
+      a_first_opinion = #{aFirstOpinion,jdbcType=VARCHAR},
+      a_leader_opinion = #{aLeaderOpinion,jdbcType=VARCHAR},
+      a_flag = #{aFlag,jdbcType=VARCHAR}
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lzz.potato.dao.TbWordsMapper" >
+  <resultMap id="BaseResultMap" type="com.lzz.potato.pojo.TbWords" >
+    <id column="ws_id" property="wsId" jdbcType="INTEGER" />
+    <result column="ws_person_id" property="wsPersonId" jdbcType="INTEGER" />
+    <result column="ws_content" property="wsContent" jdbcType="VARCHAR" />
+    <result column="ws_reply" property="wsReply" jdbcType="VARCHAR" />
+    <result column="ws_send_time" property="wsSendTime" jdbcType="VARCHAR" />
+    <result column="ws_reply_time" property="wsReplyTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ws_id, ws_person_id, ws_content, ws_reply, ws_send_time, ws_reply_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lzz.potato.pojo.TbWordsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_words
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_words
+    where ws_id = #{wsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_words
+    where ws_id = #{wsId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lzz.potato.pojo.TbWordsExample" >
+    delete from tb_words
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lzz.potato.pojo.TbWords" >
+    insert into tb_words (ws_id, ws_person_id, ws_content, 
+      ws_reply, ws_send_time, ws_reply_time
+      )
+    values (#{wsId,jdbcType=INTEGER}, #{wsPersonId,jdbcType=INTEGER}, #{wsContent,jdbcType=VARCHAR}, 
+      #{wsReply,jdbcType=VARCHAR}, #{wsSendTime,jdbcType=VARCHAR}, #{wsReplyTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lzz.potato.pojo.TbWords" >
+    insert into tb_words
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wsId != null" >
+        ws_id,
+      </if>
+      <if test="wsPersonId != null" >
+        ws_person_id,
+      </if>
+      <if test="wsContent != null" >
+        ws_content,
+      </if>
+      <if test="wsReply != null" >
+        ws_reply,
+      </if>
+      <if test="wsSendTime != null" >
+        ws_send_time,
+      </if>
+      <if test="wsReplyTime != null" >
+        ws_reply_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wsId != null" >
+        #{wsId,jdbcType=INTEGER},
+      </if>
+      <if test="wsPersonId != null" >
+        #{wsPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="wsContent != null" >
+        #{wsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="wsReply != null" >
+        #{wsReply,jdbcType=VARCHAR},
+      </if>
+      <if test="wsSendTime != null" >
+        #{wsSendTime,jdbcType=VARCHAR},
+      </if>
+      <if test="wsReplyTime != null" >
+        #{wsReplyTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lzz.potato.pojo.TbWordsExample" resultType="java.lang.Integer" >
+    select count(*) from tb_words
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_words
+    <set >
+      <if test="record.wsId != null" >
+        ws_id = #{record.wsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.wsPersonId != null" >
+        ws_person_id = #{record.wsPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.wsContent != null" >
+        ws_content = #{record.wsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wsReply != null" >
+        ws_reply = #{record.wsReply,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wsSendTime != null" >
+        ws_send_time = #{record.wsSendTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wsReplyTime != null" >
+        ws_reply_time = #{record.wsReplyTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_words
+    set ws_id = #{record.wsId,jdbcType=INTEGER},
+      ws_person_id = #{record.wsPersonId,jdbcType=INTEGER},
+      ws_content = #{record.wsContent,jdbcType=VARCHAR},
+      ws_reply = #{record.wsReply,jdbcType=VARCHAR},
+      ws_send_time = #{record.wsSendTime,jdbcType=VARCHAR},
+      ws_reply_time = #{record.wsReplyTime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lzz.potato.pojo.TbWords" >
+    update tb_words
+    <set >
+      <if test="wsPersonId != null" >
+        ws_person_id = #{wsPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="wsContent != null" >
+        ws_content = #{wsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="wsReply != null" >
+        ws_reply = #{wsReply,jdbcType=VARCHAR},
+      </if>
+      <if test="wsSendTime != null" >
+        ws_send_time = #{wsSendTime,jdbcType=VARCHAR},
+      </if>
+      <if test="wsReplyTime != null" >
+        ws_reply_time = #{wsReplyTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ws_id = #{wsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lzz.potato.pojo.TbWords" >
+    update tb_words
+    set ws_person_id = #{wsPersonId,jdbcType=INTEGER},
+      ws_content = #{wsContent,jdbcType=VARCHAR},
+      ws_reply = #{wsReply,jdbcType=VARCHAR},
+      ws_send_time = #{wsSendTime,jdbcType=VARCHAR},
+      ws_reply_time = #{wsReplyTime,jdbcType=VARCHAR}
+    where ws_id = #{wsId,jdbcType=INTEGER}
+  </update>
+</mapper>

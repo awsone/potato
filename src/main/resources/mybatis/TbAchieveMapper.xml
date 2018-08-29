@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lzz.potato.dao.TbAchieveMapper" >
+  <resultMap id="BaseResultMap" type="com.lzz.potato.pojo.TbAchieve" >
+    <id column="ac_id" property="acId" jdbcType="INTEGER" />
+    <result column="ac_m_id" property="acMId" jdbcType="INTEGER" />
+    <result column="ac_content" property="acContent" jdbcType="VARCHAR" />
+    <result column="ac_sale" property="acSale" jdbcType="VARCHAR" />
+    <result column="ac_level" property="acLevel" jdbcType="VARCHAR" />
+    <result column="ac_file" property="acFile" jdbcType="VARCHAR" />
+    <result column="ac_time" property="acTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ac_id, ac_m_id, ac_content, ac_sale, ac_level, ac_file, ac_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lzz.potato.pojo.TbAchieveExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_achieve
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_achieve
+    where ac_id = #{acId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_achieve
+    where ac_id = #{acId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lzz.potato.pojo.TbAchieveExample" >
+    delete from tb_achieve
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lzz.potato.pojo.TbAchieve" >
+    insert into tb_achieve (ac_id, ac_m_id, ac_content, 
+      ac_sale, ac_level, ac_file, 
+      ac_time)
+    values (#{acId,jdbcType=INTEGER}, #{acMId,jdbcType=INTEGER}, #{acContent,jdbcType=VARCHAR}, 
+      #{acSale,jdbcType=VARCHAR}, #{acLevel,jdbcType=VARCHAR}, #{acFile,jdbcType=VARCHAR}, 
+      #{acTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lzz.potato.pojo.TbAchieve" >
+    insert into tb_achieve
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="acId != null" >
+        ac_id,
+      </if>
+      <if test="acMId != null" >
+        ac_m_id,
+      </if>
+      <if test="acContent != null" >
+        ac_content,
+      </if>
+      <if test="acSale != null" >
+        ac_sale,
+      </if>
+      <if test="acLevel != null" >
+        ac_level,
+      </if>
+      <if test="acFile != null" >
+        ac_file,
+      </if>
+      <if test="acTime != null" >
+        ac_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="acId != null" >
+        #{acId,jdbcType=INTEGER},
+      </if>
+      <if test="acMId != null" >
+        #{acMId,jdbcType=INTEGER},
+      </if>
+      <if test="acContent != null" >
+        #{acContent,jdbcType=VARCHAR},
+      </if>
+      <if test="acSale != null" >
+        #{acSale,jdbcType=VARCHAR},
+      </if>
+      <if test="acLevel != null" >
+        #{acLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="acFile != null" >
+        #{acFile,jdbcType=VARCHAR},
+      </if>
+      <if test="acTime != null" >
+        #{acTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lzz.potato.pojo.TbAchieveExample" resultType="java.lang.Integer" >
+    select count(*) from tb_achieve
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_achieve
+    <set >
+      <if test="record.acId != null" >
+        ac_id = #{record.acId,jdbcType=INTEGER},
+      </if>
+      <if test="record.acMId != null" >
+        ac_m_id = #{record.acMId,jdbcType=INTEGER},
+      </if>
+      <if test="record.acContent != null" >
+        ac_content = #{record.acContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acSale != null" >
+        ac_sale = #{record.acSale,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acLevel != null" >
+        ac_level = #{record.acLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acFile != null" >
+        ac_file = #{record.acFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acTime != null" >
+        ac_time = #{record.acTime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_achieve
+    set ac_id = #{record.acId,jdbcType=INTEGER},
+      ac_m_id = #{record.acMId,jdbcType=INTEGER},
+      ac_content = #{record.acContent,jdbcType=VARCHAR},
+      ac_sale = #{record.acSale,jdbcType=VARCHAR},
+      ac_level = #{record.acLevel,jdbcType=VARCHAR},
+      ac_file = #{record.acFile,jdbcType=VARCHAR},
+      ac_time = #{record.acTime,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lzz.potato.pojo.TbAchieve" >
+    update tb_achieve
+    <set >
+      <if test="acMId != null" >
+        ac_m_id = #{acMId,jdbcType=INTEGER},
+      </if>
+      <if test="acContent != null" >
+        ac_content = #{acContent,jdbcType=VARCHAR},
+      </if>
+      <if test="acSale != null" >
+        ac_sale = #{acSale,jdbcType=VARCHAR},
+      </if>
+      <if test="acLevel != null" >
+        ac_level = #{acLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="acFile != null" >
+        ac_file = #{acFile,jdbcType=VARCHAR},
+      </if>
+      <if test="acTime != null" >
+        ac_time = #{acTime,jdbcType=DATE},
+      </if>
+    </set>
+    where ac_id = #{acId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lzz.potato.pojo.TbAchieve" >
+    update tb_achieve
+    set ac_m_id = #{acMId,jdbcType=INTEGER},
+      ac_content = #{acContent,jdbcType=VARCHAR},
+      ac_sale = #{acSale,jdbcType=VARCHAR},
+      ac_level = #{acLevel,jdbcType=VARCHAR},
+      ac_file = #{acFile,jdbcType=VARCHAR},
+      ac_time = #{acTime,jdbcType=DATE}
+    where ac_id = #{acId,jdbcType=INTEGER}
+  </update>
+</mapper>

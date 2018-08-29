@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lzz.potato.dao.TbPersonMapper" >
+  <resultMap id="BaseResultMap" type="com.lzz.potato.pojo.TbPerson" >
+    <id column="p_id" property="pId" jdbcType="INTEGER" />
+    <result column="p_password" property="pPassword" jdbcType="VARCHAR" />
+    <result column="p_salt" property="pSalt" jdbcType="VARCHAR" />
+    <result column="p_location" property="pLocation" jdbcType="VARCHAR" />
+    <result column="p_name" property="pName" jdbcType="VARCHAR" />
+    <result column="p_birthday" property="pBirthday" jdbcType="DATE" />
+    <result column="p_home" property="pHome" jdbcType="VARCHAR" />
+    <result column="p_school" property="pSchool" jdbcType="VARCHAR" />
+    <result column="p_edu" property="pEdu" jdbcType="VARCHAR" />
+    <result column="p_finish" property="pFinish" jdbcType="DATE" />
+    <result column="p_major" property="pMajor" jdbcType="VARCHAR" />
+    <result column="p_work" property="pWork" jdbcType="VARCHAR" />
+    <result column="p_jobtime" property="pJobtime" jdbcType="DATE" />
+    <result column="p_quali" property="pQuali" jdbcType="VARCHAR" />
+    <result column="p_qualitime" property="pQualitime" jdbcType="DATE" />
+    <result column="p_identity" property="pIdentity" jdbcType="VARCHAR" />
+    <result column="p_identity_id" property="pIdentityId" jdbcType="INTEGER" />
+    <result column="p_level" property="pLevel" jdbcType="VARCHAR" />
+    <result column="p_type" property="pType" jdbcType="VARCHAR" />
+    <result column="p_extra" property="pExtra" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    p_id, p_password, p_salt, p_location, p_name, p_birthday, p_home, p_school, p_edu, 
+    p_finish, p_major, p_work, p_jobtime, p_quali, p_qualitime, p_identity, p_identity_id, 
+    p_level, p_type, p_extra
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lzz.potato.pojo.TbPersonExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_person
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_person
+    where p_id = #{pId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_person
+    where p_id = #{pId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lzz.potato.pojo.TbPersonExample" >
+    delete from tb_person
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lzz.potato.pojo.TbPerson" >
+    insert into tb_person (p_id, p_password, p_salt, 
+      p_location, p_name, p_birthday, 
+      p_home, p_school, p_edu, 
+      p_finish, p_major, p_work, 
+      p_jobtime, p_quali, p_qualitime, 
+      p_identity, p_identity_id, p_level, 
+      p_type, p_extra)
+    values (#{pId,jdbcType=INTEGER}, #{pPassword,jdbcType=VARCHAR}, #{pSalt,jdbcType=VARCHAR}, 
+      #{pLocation,jdbcType=VARCHAR}, #{pName,jdbcType=VARCHAR}, #{pBirthday,jdbcType=DATE}, 
+      #{pHome,jdbcType=VARCHAR}, #{pSchool,jdbcType=VARCHAR}, #{pEdu,jdbcType=VARCHAR}, 
+      #{pFinish,jdbcType=DATE}, #{pMajor,jdbcType=VARCHAR}, #{pWork,jdbcType=VARCHAR}, 
+      #{pJobtime,jdbcType=DATE}, #{pQuali,jdbcType=VARCHAR}, #{pQualitime,jdbcType=DATE}, 
+      #{pIdentity,jdbcType=VARCHAR}, #{pIdentityId,jdbcType=INTEGER}, #{pLevel,jdbcType=VARCHAR}, 
+      #{pType,jdbcType=VARCHAR}, #{pExtra,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lzz.potato.pojo.TbPerson" >
+    insert into tb_person
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pId != null" >
+        p_id,
+      </if>
+      <if test="pPassword != null" >
+        p_password,
+      </if>
+      <if test="pSalt != null" >
+        p_salt,
+      </if>
+      <if test="pLocation != null" >
+        p_location,
+      </if>
+      <if test="pName != null" >
+        p_name,
+      </if>
+      <if test="pBirthday != null" >
+        p_birthday,
+      </if>
+      <if test="pHome != null" >
+        p_home,
+      </if>
+      <if test="pSchool != null" >
+        p_school,
+      </if>
+      <if test="pEdu != null" >
+        p_edu,
+      </if>
+      <if test="pFinish != null" >
+        p_finish,
+      </if>
+      <if test="pMajor != null" >
+        p_major,
+      </if>
+      <if test="pWork != null" >
+        p_work,
+      </if>
+      <if test="pJobtime != null" >
+        p_jobtime,
+      </if>
+      <if test="pQuali != null" >
+        p_quali,
+      </if>
+      <if test="pQualitime != null" >
+        p_qualitime,
+      </if>
+      <if test="pIdentity != null" >
+        p_identity,
+      </if>
+      <if test="pIdentityId != null" >
+        p_identity_id,
+      </if>
+      <if test="pLevel != null" >
+        p_level,
+      </if>
+      <if test="pType != null" >
+        p_type,
+      </if>
+      <if test="pExtra != null" >
+        p_extra,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pId != null" >
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="pPassword != null" >
+        #{pPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="pSalt != null" >
+        #{pSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="pLocation != null" >
+        #{pLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="pName != null" >
+        #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="pBirthday != null" >
+        #{pBirthday,jdbcType=DATE},
+      </if>
+      <if test="pHome != null" >
+        #{pHome,jdbcType=VARCHAR},
+      </if>
+      <if test="pSchool != null" >
+        #{pSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="pEdu != null" >
+        #{pEdu,jdbcType=VARCHAR},
+      </if>
+      <if test="pFinish != null" >
+        #{pFinish,jdbcType=DATE},
+      </if>
+      <if test="pMajor != null" >
+        #{pMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="pWork != null" >
+        #{pWork,jdbcType=VARCHAR},
+      </if>
+      <if test="pJobtime != null" >
+        #{pJobtime,jdbcType=DATE},
+      </if>
+      <if test="pQuali != null" >
+        #{pQuali,jdbcType=VARCHAR},
+      </if>
+      <if test="pQualitime != null" >
+        #{pQualitime,jdbcType=DATE},
+      </if>
+      <if test="pIdentity != null" >
+        #{pIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="pIdentityId != null" >
+        #{pIdentityId,jdbcType=INTEGER},
+      </if>
+      <if test="pLevel != null" >
+        #{pLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="pType != null" >
+        #{pType,jdbcType=VARCHAR},
+      </if>
+      <if test="pExtra != null" >
+        #{pExtra,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lzz.potato.pojo.TbPersonExample" resultType="java.lang.Integer" >
+    select count(*) from tb_person
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_person
+    <set >
+      <if test="record.pId != null" >
+        p_id = #{record.pId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pPassword != null" >
+        p_password = #{record.pPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pSalt != null" >
+        p_salt = #{record.pSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pLocation != null" >
+        p_location = #{record.pLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pName != null" >
+        p_name = #{record.pName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pBirthday != null" >
+        p_birthday = #{record.pBirthday,jdbcType=DATE},
+      </if>
+      <if test="record.pHome != null" >
+        p_home = #{record.pHome,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pSchool != null" >
+        p_school = #{record.pSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pEdu != null" >
+        p_edu = #{record.pEdu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pFinish != null" >
+        p_finish = #{record.pFinish,jdbcType=DATE},
+      </if>
+      <if test="record.pMajor != null" >
+        p_major = #{record.pMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pWork != null" >
+        p_work = #{record.pWork,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pJobtime != null" >
+        p_jobtime = #{record.pJobtime,jdbcType=DATE},
+      </if>
+      <if test="record.pQuali != null" >
+        p_quali = #{record.pQuali,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pQualitime != null" >
+        p_qualitime = #{record.pQualitime,jdbcType=DATE},
+      </if>
+      <if test="record.pIdentity != null" >
+        p_identity = #{record.pIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pIdentityId != null" >
+        p_identity_id = #{record.pIdentityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pLevel != null" >
+        p_level = #{record.pLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pType != null" >
+        p_type = #{record.pType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pExtra != null" >
+        p_extra = #{record.pExtra,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_person
+    set p_id = #{record.pId,jdbcType=INTEGER},
+      p_password = #{record.pPassword,jdbcType=VARCHAR},
+      p_salt = #{record.pSalt,jdbcType=VARCHAR},
+      p_location = #{record.pLocation,jdbcType=VARCHAR},
+      p_name = #{record.pName,jdbcType=VARCHAR},
+      p_birthday = #{record.pBirthday,jdbcType=DATE},
+      p_home = #{record.pHome,jdbcType=VARCHAR},
+      p_school = #{record.pSchool,jdbcType=VARCHAR},
+      p_edu = #{record.pEdu,jdbcType=VARCHAR},
+      p_finish = #{record.pFinish,jdbcType=DATE},
+      p_major = #{record.pMajor,jdbcType=VARCHAR},
+      p_work = #{record.pWork,jdbcType=VARCHAR},
+      p_jobtime = #{record.pJobtime,jdbcType=DATE},
+      p_quali = #{record.pQuali,jdbcType=VARCHAR},
+      p_qualitime = #{record.pQualitime,jdbcType=DATE},
+      p_identity = #{record.pIdentity,jdbcType=VARCHAR},
+      p_identity_id = #{record.pIdentityId,jdbcType=INTEGER},
+      p_level = #{record.pLevel,jdbcType=VARCHAR},
+      p_type = #{record.pType,jdbcType=VARCHAR},
+      p_extra = #{record.pExtra,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lzz.potato.pojo.TbPerson" >
+    update tb_person
+    <set >
+      <if test="pPassword != null" >
+        p_password = #{pPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="pSalt != null" >
+        p_salt = #{pSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="pLocation != null" >
+        p_location = #{pLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="pName != null" >
+        p_name = #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="pBirthday != null" >
+        p_birthday = #{pBirthday,jdbcType=DATE},
+      </if>
+      <if test="pHome != null" >
+        p_home = #{pHome,jdbcType=VARCHAR},
+      </if>
+      <if test="pSchool != null" >
+        p_school = #{pSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="pEdu != null" >
+        p_edu = #{pEdu,jdbcType=VARCHAR},
+      </if>
+      <if test="pFinish != null" >
+        p_finish = #{pFinish,jdbcType=DATE},
+      </if>
+      <if test="pMajor != null" >
+        p_major = #{pMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="pWork != null" >
+        p_work = #{pWork,jdbcType=VARCHAR},
+      </if>
+      <if test="pJobtime != null" >
+        p_jobtime = #{pJobtime,jdbcType=DATE},
+      </if>
+      <if test="pQuali != null" >
+        p_quali = #{pQuali,jdbcType=VARCHAR},
+      </if>
+      <if test="pQualitime != null" >
+        p_qualitime = #{pQualitime,jdbcType=DATE},
+      </if>
+      <if test="pIdentity != null" >
+        p_identity = #{pIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="pIdentityId != null" >
+        p_identity_id = #{pIdentityId,jdbcType=INTEGER},
+      </if>
+      <if test="pLevel != null" >
+        p_level = #{pLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="pType != null" >
+        p_type = #{pType,jdbcType=VARCHAR},
+      </if>
+      <if test="pExtra != null" >
+        p_extra = #{pExtra,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where p_id = #{pId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lzz.potato.pojo.TbPerson" >
+    update tb_person
+    set p_password = #{pPassword,jdbcType=VARCHAR},
+      p_salt = #{pSalt,jdbcType=VARCHAR},
+      p_location = #{pLocation,jdbcType=VARCHAR},
+      p_name = #{pName,jdbcType=VARCHAR},
+      p_birthday = #{pBirthday,jdbcType=DATE},
+      p_home = #{pHome,jdbcType=VARCHAR},
+      p_school = #{pSchool,jdbcType=VARCHAR},
+      p_edu = #{pEdu,jdbcType=VARCHAR},
+      p_finish = #{pFinish,jdbcType=DATE},
+      p_major = #{pMajor,jdbcType=VARCHAR},
+      p_work = #{pWork,jdbcType=VARCHAR},
+      p_jobtime = #{pJobtime,jdbcType=DATE},
+      p_quali = #{pQuali,jdbcType=VARCHAR},
+      p_qualitime = #{pQualitime,jdbcType=DATE},
+      p_identity = #{pIdentity,jdbcType=VARCHAR},
+      p_identity_id = #{pIdentityId,jdbcType=INTEGER},
+      p_level = #{pLevel,jdbcType=VARCHAR},
+      p_type = #{pType,jdbcType=VARCHAR},
+      p_extra = #{pExtra,jdbcType=VARCHAR}
+    where p_id = #{pId,jdbcType=INTEGER}
+  </update>
+</mapper>

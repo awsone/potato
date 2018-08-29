@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lzz.potato.dao.TbManageMapper" >
+  <resultMap id="BaseResultMap" type="com.lzz.potato.pojo.TbManage" >
+    <id column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="m_name" property="mName" jdbcType="VARCHAR" />
+    <result column="m_compang" property="mCompang" jdbcType="VARCHAR" />
+    <result column="m_starttime" property="mStarttime" jdbcType="DATE" />
+    <result column="m_endtime" property="mEndtime" jdbcType="DATE" />
+    <result column="m_leader_a" property="mLeaderA" jdbcType="VARCHAR" />
+    <result column="m_leader_b" property="mLeaderB" jdbcType="VARCHAR" />
+    <result column="m_money" property="mMoney" jdbcType="DOUBLE" />
+    <result column="m_pay" property="mPay" jdbcType="DOUBLE" />
+    <result column="m_file" property="mFile" jdbcType="VARCHAR" />
+    <result column="m_flag" property="mFlag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    m_id, m_name, m_compang, m_starttime, m_endtime, m_leader_a, m_leader_b, m_money, 
+    m_pay, m_file, m_flag
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lzz.potato.pojo.TbManageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_manage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_manage
+    where m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_manage
+    where m_id = #{mId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lzz.potato.pojo.TbManageExample" >
+    delete from tb_manage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lzz.potato.pojo.TbManage" >
+    insert into tb_manage (m_id, m_name, m_compang, 
+      m_starttime, m_endtime, m_leader_a, 
+      m_leader_b, m_money, m_pay, 
+      m_file, m_flag)
+    values (#{mId,jdbcType=INTEGER}, #{mName,jdbcType=VARCHAR}, #{mCompang,jdbcType=VARCHAR}, 
+      #{mStarttime,jdbcType=DATE}, #{mEndtime,jdbcType=DATE}, #{mLeaderA,jdbcType=VARCHAR}, 
+      #{mLeaderB,jdbcType=VARCHAR}, #{mMoney,jdbcType=DOUBLE}, #{mPay,jdbcType=DOUBLE}, 
+      #{mFile,jdbcType=VARCHAR}, #{mFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lzz.potato.pojo.TbManage" >
+    insert into tb_manage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="mName != null" >
+        m_name,
+      </if>
+      <if test="mCompang != null" >
+        m_compang,
+      </if>
+      <if test="mStarttime != null" >
+        m_starttime,
+      </if>
+      <if test="mEndtime != null" >
+        m_endtime,
+      </if>
+      <if test="mLeaderA != null" >
+        m_leader_a,
+      </if>
+      <if test="mLeaderB != null" >
+        m_leader_b,
+      </if>
+      <if test="mMoney != null" >
+        m_money,
+      </if>
+      <if test="mPay != null" >
+        m_pay,
+      </if>
+      <if test="mFile != null" >
+        m_file,
+      </if>
+      <if test="mFlag != null" >
+        m_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="mName != null" >
+        #{mName,jdbcType=VARCHAR},
+      </if>
+      <if test="mCompang != null" >
+        #{mCompang,jdbcType=VARCHAR},
+      </if>
+      <if test="mStarttime != null" >
+        #{mStarttime,jdbcType=DATE},
+      </if>
+      <if test="mEndtime != null" >
+        #{mEndtime,jdbcType=DATE},
+      </if>
+      <if test="mLeaderA != null" >
+        #{mLeaderA,jdbcType=VARCHAR},
+      </if>
+      <if test="mLeaderB != null" >
+        #{mLeaderB,jdbcType=VARCHAR},
+      </if>
+      <if test="mMoney != null" >
+        #{mMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="mPay != null" >
+        #{mPay,jdbcType=DOUBLE},
+      </if>
+      <if test="mFile != null" >
+        #{mFile,jdbcType=VARCHAR},
+      </if>
+      <if test="mFlag != null" >
+        #{mFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lzz.potato.pojo.TbManageExample" resultType="java.lang.Integer" >
+    select count(*) from tb_manage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_manage
+    <set >
+      <if test="record.mId != null" >
+        m_id = #{record.mId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mName != null" >
+        m_name = #{record.mName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mCompang != null" >
+        m_compang = #{record.mCompang,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mStarttime != null" >
+        m_starttime = #{record.mStarttime,jdbcType=DATE},
+      </if>
+      <if test="record.mEndtime != null" >
+        m_endtime = #{record.mEndtime,jdbcType=DATE},
+      </if>
+      <if test="record.mLeaderA != null" >
+        m_leader_a = #{record.mLeaderA,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mLeaderB != null" >
+        m_leader_b = #{record.mLeaderB,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mMoney != null" >
+        m_money = #{record.mMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.mPay != null" >
+        m_pay = #{record.mPay,jdbcType=DOUBLE},
+      </if>
+      <if test="record.mFile != null" >
+        m_file = #{record.mFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mFlag != null" >
+        m_flag = #{record.mFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_manage
+    set m_id = #{record.mId,jdbcType=INTEGER},
+      m_name = #{record.mName,jdbcType=VARCHAR},
+      m_compang = #{record.mCompang,jdbcType=VARCHAR},
+      m_starttime = #{record.mStarttime,jdbcType=DATE},
+      m_endtime = #{record.mEndtime,jdbcType=DATE},
+      m_leader_a = #{record.mLeaderA,jdbcType=VARCHAR},
+      m_leader_b = #{record.mLeaderB,jdbcType=VARCHAR},
+      m_money = #{record.mMoney,jdbcType=DOUBLE},
+      m_pay = #{record.mPay,jdbcType=DOUBLE},
+      m_file = #{record.mFile,jdbcType=VARCHAR},
+      m_flag = #{record.mFlag,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lzz.potato.pojo.TbManage" >
+    update tb_manage
+    <set >
+      <if test="mName != null" >
+        m_name = #{mName,jdbcType=VARCHAR},
+      </if>
+      <if test="mCompang != null" >
+        m_compang = #{mCompang,jdbcType=VARCHAR},
+      </if>
+      <if test="mStarttime != null" >
+        m_starttime = #{mStarttime,jdbcType=DATE},
+      </if>
+      <if test="mEndtime != null" >
+        m_endtime = #{mEndtime,jdbcType=DATE},
+      </if>
+      <if test="mLeaderA != null" >
+        m_leader_a = #{mLeaderA,jdbcType=VARCHAR},
+      </if>
+      <if test="mLeaderB != null" >
+        m_leader_b = #{mLeaderB,jdbcType=VARCHAR},
+      </if>
+      <if test="mMoney != null" >
+        m_money = #{mMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="mPay != null" >
+        m_pay = #{mPay,jdbcType=DOUBLE},
+      </if>
+      <if test="mFile != null" >
+        m_file = #{mFile,jdbcType=VARCHAR},
+      </if>
+      <if test="mFlag != null" >
+        m_flag = #{mFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lzz.potato.pojo.TbManage" >
+    update tb_manage
+    set m_name = #{mName,jdbcType=VARCHAR},
+      m_compang = #{mCompang,jdbcType=VARCHAR},
+      m_starttime = #{mStarttime,jdbcType=DATE},
+      m_endtime = #{mEndtime,jdbcType=DATE},
+      m_leader_a = #{mLeaderA,jdbcType=VARCHAR},
+      m_leader_b = #{mLeaderB,jdbcType=VARCHAR},
+      m_money = #{mMoney,jdbcType=DOUBLE},
+      m_pay = #{mPay,jdbcType=DOUBLE},
+      m_file = #{mFile,jdbcType=VARCHAR},
+      m_flag = #{mFlag,jdbcType=VARCHAR}
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+</mapper>

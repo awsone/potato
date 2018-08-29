@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lzz.potato.dao.TbTorewardMapper" >
+  <resultMap id="BaseResultMap" type="com.lzz.potato.pojo.TbToreward" >
+    <id column="t_id" property="tId" jdbcType="INTEGER" />
+    <result column="t_m_id" property="tMId" jdbcType="INTEGER" />
+    <result column="t_ac_id" property="tAcId" jdbcType="INTEGER" />
+    <result column="t_level" property="tLevel" jdbcType="VARCHAR" />
+    <result column="t_register" property="tRegister" jdbcType="VARCHAR" />
+    <result column="t_file" property="tFile" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    t_id, t_m_id, t_ac_id, t_level, t_register, t_file
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lzz.potato.pojo.TbTorewardExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_toreward
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_toreward
+    where t_id = #{tId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_toreward
+    where t_id = #{tId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lzz.potato.pojo.TbTorewardExample" >
+    delete from tb_toreward
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lzz.potato.pojo.TbToreward" >
+    insert into tb_toreward (t_id, t_m_id, t_ac_id, 
+      t_level, t_register, t_file
+      )
+    values (#{tId,jdbcType=INTEGER}, #{tMId,jdbcType=INTEGER}, #{tAcId,jdbcType=INTEGER}, 
+      #{tLevel,jdbcType=VARCHAR}, #{tRegister,jdbcType=VARCHAR}, #{tFile,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lzz.potato.pojo.TbToreward" >
+    insert into tb_toreward
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tId != null" >
+        t_id,
+      </if>
+      <if test="tMId != null" >
+        t_m_id,
+      </if>
+      <if test="tAcId != null" >
+        t_ac_id,
+      </if>
+      <if test="tLevel != null" >
+        t_level,
+      </if>
+      <if test="tRegister != null" >
+        t_register,
+      </if>
+      <if test="tFile != null" >
+        t_file,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tId != null" >
+        #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="tMId != null" >
+        #{tMId,jdbcType=INTEGER},
+      </if>
+      <if test="tAcId != null" >
+        #{tAcId,jdbcType=INTEGER},
+      </if>
+      <if test="tLevel != null" >
+        #{tLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="tRegister != null" >
+        #{tRegister,jdbcType=VARCHAR},
+      </if>
+      <if test="tFile != null" >
+        #{tFile,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lzz.potato.pojo.TbTorewardExample" resultType="java.lang.Integer" >
+    select count(*) from tb_toreward
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_toreward
+    <set >
+      <if test="record.tId != null" >
+        t_id = #{record.tId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tMId != null" >
+        t_m_id = #{record.tMId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tAcId != null" >
+        t_ac_id = #{record.tAcId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tLevel != null" >
+        t_level = #{record.tLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tRegister != null" >
+        t_register = #{record.tRegister,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tFile != null" >
+        t_file = #{record.tFile,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_toreward
+    set t_id = #{record.tId,jdbcType=INTEGER},
+      t_m_id = #{record.tMId,jdbcType=INTEGER},
+      t_ac_id = #{record.tAcId,jdbcType=INTEGER},
+      t_level = #{record.tLevel,jdbcType=VARCHAR},
+      t_register = #{record.tRegister,jdbcType=VARCHAR},
+      t_file = #{record.tFile,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lzz.potato.pojo.TbToreward" >
+    update tb_toreward
+    <set >
+      <if test="tMId != null" >
+        t_m_id = #{tMId,jdbcType=INTEGER},
+      </if>
+      <if test="tAcId != null" >
+        t_ac_id = #{tAcId,jdbcType=INTEGER},
+      </if>
+      <if test="tLevel != null" >
+        t_level = #{tLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="tRegister != null" >
+        t_register = #{tRegister,jdbcType=VARCHAR},
+      </if>
+      <if test="tFile != null" >
+        t_file = #{tFile,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where t_id = #{tId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lzz.potato.pojo.TbToreward" >
+    update tb_toreward
+    set t_m_id = #{tMId,jdbcType=INTEGER},
+      t_ac_id = #{tAcId,jdbcType=INTEGER},
+      t_level = #{tLevel,jdbcType=VARCHAR},
+      t_register = #{tRegister,jdbcType=VARCHAR},
+      t_file = #{tFile,jdbcType=VARCHAR}
+    where t_id = #{tId,jdbcType=INTEGER}
+  </update>
+</mapper>
