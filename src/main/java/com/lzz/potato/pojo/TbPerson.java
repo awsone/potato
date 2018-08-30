@@ -43,14 +43,29 @@ public class TbPerson implements Serializable {
     private String pType;
 
     private String pExtra;
+   
+    private String pSex;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getpId() {
+    
+    
+    
+    
+    public String getpSex() {
+		return pSex;
+	}
+
+	public void setpSex(String pSex) {
+        this.pSex = pSex == null ? null : pSex.trim();
+	}
+
+	public Integer getpId() {
         return pId;
     }
 
     public void setpId(Integer pId) {
+    	
         this.pId = pId;
     }
 
@@ -232,6 +247,7 @@ public class TbPerson implements Serializable {
         sb.append(", pLevel=").append(pLevel);
         sb.append(", pType=").append(pType);
         sb.append(", pExtra=").append(pExtra);
+        sb.append(", pSex=").append(pSex);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

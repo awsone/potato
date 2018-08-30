@@ -5,6 +5,7 @@ server:
 mybatis:  
     #mapper-locations: classpath:com/lzz/potato/dao/*.xml
     config-location: classpath:mybatis-config.xml
+    mapper-locations: classpath:mybatis/*.xml
 spring:  
     #thymeleaf start
     thymeleaf:

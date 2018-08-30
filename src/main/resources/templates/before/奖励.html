@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>待评价</title>
+     <link rel="icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/pages-sampling.css" />
+    <link rel="stylesheet" type="text/css" href="css/webbase.css" />
+    <link rel="stylesheet" type="text/css" href="css/pages-seckillOrder.css" />
+	<style>
+		.banner{width:100%;height:140px;background:url(img/_/sampling_head2.jpg) no-repeat center center}
+	
+	
+	</style>
+</head>
+
+<body>
+    <!-- 头部栏位 -->
+    <!--页面顶部-->
+
+<div id="nav-bottom">
+	<!--供应商-->
+   
+	<!--顶部-->
+	<div class="nav-top">
+		<div class="top">
+			<div class="py-container">
+				<div class="shortcut">
+					<ul class="fl">
+						<li class="f-item"><strong><i>POTATO</i></strong>管理系统欢迎您！</li>
+						<li class="f-item">请<a href="login.html" target="_blank">登录</a>　<span><a href="register.html" target="_blank">免费注册</a></span></li>
+					</ul>
+					<ul class="fr">
+						<li class="f-item">我的订单</li>
+						<li class="f-item space"></li>
+						<li class="f-item"><a href="home.html" target="_blank">我的产品</a></li>
+						<li class="f-item space"></li>
+						<li class="f-item">会员</li>
+						<li class="f-item space"></li>
+						<li class="f-item">企业采购</li>
+						<li class="f-item space"></li>
+						<li class="f-item">关注</li>
+						<li class="f-item space"></li>
+						<li class="f-item" id="service">
+							<span>客户服务</span>
+							<ul class="service">
+								<li><a href="cooperation.html" target="_blank">合作招商</a></li>
+								<li><a href="shoplogin.html" target="_blank">商家后台</a></li>
+								<li><a href="cooperation.html" target="_blank">合作招商</a></li>
+								<li><a href="#">商家后台</a></li>
+							</ul>
+						</li>
+						<li class="f-item space"></li>
+						<li class="f-item">网站导航</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!--头部-->
+		<div class="header">
+			<!--图片-->
+				<div class="banner" style="heigth:100px;">
+				</div>
+			<div class="py-container">
+			
+
+				<div class="yui3-g NavList">
+				
+					<div class="yui3-u Left all-sort">
+						<h4>首页</h4>
+					</div>
+					<div class="yui3-u Center navArea">
+						<ul class="nav">
+							<li class="f-item">快速办理</li>
+							<li class="f-item">科技项目</li>
+							<li class="f-item">科技成果</li>
+							<li class="f-item">科技奖励</li>
+							<li class="f-item">科技人才</li>
+							<li class="f-item">下载专区</li>
+						</ul>
+					</div>
+					<div class="yui3-u Right"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#service").hover(function(){
+		$(".service").show();
+	},function(){
+		$(".service").hide();
+	});
+	$("#shopcar").hover(function(){
+		$("#shopcarlist").show();
+	},function(){
+		$("#shopcarlist").hide();
+	});
+
+})
+</script>
+<script type="text/javascript" src="js/plugins/jquery.easing/jquery.easing.min.js"></script>
+<script type="text/javascript" src="js/plugins/sui/sui.min.js"></script>
+<script type="text/javascript" src="js/plugins/jquery-placeholder/jquery.placeholder.min.js"></script>
+<script type="text/javascript" src="js/widget/nav.js"></script>
+<style>
+
+td{
+	height:35px;
+}
+
+
+</style>
+</body>
+    <!--header-->
+    <div id="account">
+        <div class="py-container">
+            <div class="yui3-g home">
+                <!--左侧列表-->
+                
+                <!--右侧主内容-->
+                <div class="yui3-u-5-6 order-pay" style="width:100%;">
+                    <div class="body">
+                        
+                        <div class="order-detail">
+                            <div class="orders">
+                             
+								<!--order1-->
+                                <div class="choose-title">
+                                           <span><center>成果查询</center></span>
+                                </div>
+                                <table class="sui-table table-bordered order-datatable">
+                                    <tbody>
+                                        <tr>
+                                            <td width="50%" class="center">
+												成果名称：<input id="" text />
+                                            </td>
+                                            <td width="50%" class="center">                                                                                                
+                                                完成人：<input id="" text />
+                                            </td>
+                                            
+                                        </tr>
+										<tr>
+                                            <td width="50%" class="center">
+												所属年份：<input id="" text />
+                                            </td>
+                                            <td width="50%" class="center">                                                                                                
+                                                成果类别：<input id="" text />
+                                            </td>
+                                            
+                                        </tr>
+										<tr>
+                                           <td width="50%" class="center">
+												承担单位：<input id="" text />
+                                            </td>
+                                            <td width="50%" class="center">                                                                                                
+                                            </td>
+                                            
+                                            
+                                        </tr>
+                                        
+
+                                    </tbody>
+                                </table>
+								
+								<div class="">
+									<center>
+										<p/>
+										<p/>
+									   <button id="" class="sui-btn btn-primary">搜索</button>&nbsp;&nbsp;&nbsp;
+									   <button id="" type="reset" class="sui-btn btn-primary">重写</button>
+
+									</center>
+                                </div>
+								
+								
+								
+                                <!--order2-->
+                                <div class="choose-title">
+                                           <span><center>成果类别</center></span>
+                                </div>
+                                <table class="sui-table table-bordered order-datatable">
+                                    <tbody>
+                                        <tr>
+                                            <td width="25%" class="center">
+												<a href="">油气勘探</a>
+                                            </td>
+                                            <td width="25%" class="center">                                                                                                
+												<a href="">地质研究</a>
+                                            </td>
+											<td width="25%" class="center">
+												<a href="">油脏工程研究与评价</a>
+                                            </td>
+                                            <td width="25%" class="center">                                                                                                
+												<a href="">油气开采及新技术</a>
+                                            </td>
+                                            
+                                        </tr>
+										 <tr>
+                                            <td width="25%" class="center">
+												<a href="">节能环保</a>
+                                            </td>
+                                            <td width="25%" class="center">                                                                                                
+												<a href="">信息化</a>
+                                            </td>
+											<td width="25%" class="center">
+												<a href="">其它</a>
+                                            </td>
+                                            <td width="25%" class="center">                                                                                                
+                                            </td>
+                                            
+                                        </tr>
+                                        
+
+                                    </tbody>
+                                </table>
+								 
+
+                                <!--order3-->
+                                <div class="choose-title">
+                                           <span><center>年份</center></span>
+                                </div>
+                                <table class="sui-table table-bordered order-datatable">
+                                    <tbody>
+                                        <tr>
+                                            <td width="25%" class="center">
+												<a href="">2018</a>
+                                            </td>
+                                            <td width="25%" class="center">                                                                                                
+												<a href="">2017</a>
+                                            </td>
+											<td width="25%" class="center">
+												<a href="">2016</a>
+                                            </td>
+                                            <td width="25%" class="center">                                                                                                
+												<a href="">2015</a>
+                                            </td>
+                                            
+                                        </tr>
+										 <tr>
+                                            <td width="25%" class="center">
+												<a href="">2014</a>
+                                            </td>
+                                            <td width="25%" class="center">                                                                                                
+												<a href="">2013</a>
+                                            </td>
+											<td width="25%" class="center">
+												<a href="">2012</a>
+                                            </td>
+                                            <td width="25%" class="center">   
+												<a href="">2011</a>
+                                            </td>                                            
+                                        </tr>
+										<tr>
+                                            <td width="25%" class="center">
+												<a href="">2010</a>
+                                            </td>
+                                            <td width="25%" class="center">                                                                                                
+												<a href="">2009</a>
+                                            </td>
+											<td width="25%" class="center">
+												<a href="">2008</a>
+                                            </td>
+                                            <td width="25%" class="center">   
+												<a href="">2007</a>
+                                            </td>                                            
+                                        </tr>										
+                                    </tbody>
+                                </table>
+
+
+
+                            </div>
+                            
+
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部栏位 -->
+    <!--页面底部-->
+<div class="clearfix footer">
+	<div class="py-container">
+		<div class="footlink">
+			<div class="Mod-service">
+				<ul class="Mod-Service-list">
+					<li class="grid-service-item intro  intro1">
+
+						<i class="serivce-item fl"></i>
+						<div class="service-text">
+							<h4>正品保障</h4>
+							<p>正品保障，提供发票</p>
+						</div>
+
+					</li>
+					<li class="grid-service-item  intro intro2">
+
+						<i class="serivce-item fl"></i>
+						<div class="service-text">
+							<h4>正品保障</h4>
+							<p>正品保障，提供发票</p>
+						</div>
+
+					</li>
+					<li class="grid-service-item intro  intro3">
+
+						<i class="serivce-item fl"></i>
+						<div class="service-text">
+							<h4>正品保障</h4>
+							<p>正品保障，提供发票</p>
+						</div>
+
+					</li>
+					<li class="grid-service-item  intro intro4">
+
+						<i class="serivce-item fl"></i>
+						<div class="service-text">
+							<h4>正品保障</h4>
+							<p>正品保障，提供发票</p>
+						</div>
+
+					</li>
+					<li class="grid-service-item intro intro5">
+
+						<i class="serivce-item fl"></i>
+						<div class="service-text">
+							<h4>正品保障</h4>
+							<p>正品保障，提供发票</p>
+						</div>
+
+					</li>
+				</ul>
+			</div>
+			
+			<div class="Mod-copyright">
+				<ul class="helpLink">
+					<li>关于我们<span class="space"></span></li>
+					<li>联系我们<span class="space"></span></li>
+					<li>关于我们<span class="space"></span></li>
+					<li>商家入驻<span class="space"></span></li>
+					<li>营销中心<span class="space"></span></li>
+					<li>友情链接<span class="space"></span></li>
+					<li>关于我们<span class="space"></span></li>
+					<li>营销中心<span class="space"></span></li>
+					<li>友情链接<span class="space"></span></li>
+					<li>关于我们</li>
+				</ul>
+				<p>地址：湖南省衡阳市蒸湘区南华大学 邮编：1008611 电话：400-618-4000 传真：010-82935100</p>
+				<p>京ICP备08001421号京公网安备110108007702</p>
+			</div>
+		</div>
+	</div>
+</div>
+<!--页面底部END-->
+
+undefined
+
+</html>

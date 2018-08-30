@@ -131,6 +131,7 @@ public class PersonServiceImpl implements PersonService {
 			if(person.getpExtra()!=null && person.getpExtra().length()>0){
 				criteria.andPExtraLike("%"+person.getpExtra()+"%");
 			}
+			
 	
 		}
 		
